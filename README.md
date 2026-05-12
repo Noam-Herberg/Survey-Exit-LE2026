@@ -24,7 +24,6 @@ function doPost(e) {
   sheet.appendRow([
     data.submittedAt,
     data.authority,
-    data.ward,
     data.leafletKinds,
     data.phonebankingHours,
     data.canvassingHours,
@@ -41,5 +40,5 @@ function doPost(e) {
 Suggested sheet columns:
 
 ```text
-submittedAt, authority, ward, leafletKinds, phonebankingHours, canvassingHours, leafletDeliveryHours, resultsSurprising
+submittedAt, authority, leafletKinds, phonebankingHours, canvassingHours, leafletDeliveryHours, resultsSurprising
 ```
