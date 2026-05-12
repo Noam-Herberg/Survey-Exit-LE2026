@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Campaigner Survey</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fa;
+      --panel: #ffffff;
+      --text: #17202a;
+      --muted: #607080;
+      --line: #d9e1e8;
+      --accent: #176b87;
+      --accent-dark: #10546b;
+      --error: #b42318;
+      --success: #0f7a4f;
+      --focus: rgba(23, 107, 135, 0.22);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    main {
+      width: min(720px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 48px 0;
+    }
+
+    header {
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 6vw, 3.25rem);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .intro {
+      margin: 0;
+      max-width: 56ch;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.5;
+    }
+
+    form {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 18px 45px rgba(28, 45, 60, 0.08);
+      padding: 28px;
+    }
+
+    .field {
+      margin-bottom: 24px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .required {
+      color: var(--error);
+      font-weight: 700;
+    }
+
+    .hint {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.45;
+    }
+
+    input,
+    select {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid #b8c5cf;
+      border-radius: 6px;
+      padding: 11px 12px;
+      color: var(--text);
+      background: #ffffff;
+      font: inherit;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--focus);
+      outline: none;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding-top: 4px;
+    }
+
+    button {
+      min-height: 48px;
+      border: 0;
+      border-radius: 6px;
+      padding: 0 18px;
+      color: #ffffff;
+      background: var(--accent);
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--accent-dark);
+    }
+
+    button:disabled {
+      cursor: wait;
+      opacity: 0.68;
+    }
+
+    .status {
+      min-height: 24px;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .status.error {
+      color: var(--error);
+    }
+
+    .status.success {
+      color: var(--success);
+    }
+
+    .csv-link {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    @media (max-width: 560px) {
+      main {
+        width: min(100% - 24px, 720px);
+        padding: 28px 0;
+      }
+
+      form {
+        padding: 20px;
+      }
+
+      .actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Campaigner survey</h1>
+      <p class="intro">A short follow-up for people who helped campaign locally.</p>
+    </header>
+
+    <form id="survey-form" novalidate>
+      <div class="field">
+        <label for="authority">What authority were you campaigning in? <span class="required">(Required)</span></label>
+        <input id="authority" name="authority" type="text" autocomplete="organization" required>
+      </div>
+
+      <div class="field">
+        <label for="ward">Was there a particular ward you focused on?</label>
+        <input id="ward" name="ward" type="text" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label for="leafletKinds">How many different kinds of leaflet did you put out over the course of the campaign?</label>
+        <p class="hint">For example, enter 1 if every leaflet was the same design, or 3 if there were three distinct versions.</p>
+        <input id="leafletKinds" name="leafletKinds" type="number" min="0" step="1" inputmode="numeric">
+      </div>
+
+      <div class="field">
+        <label for="phonebankingHours">How many hours a week on average did you spend phonebanking?</label>
+        <input id="phonebankingHours" name="phonebankingHours" type="number" min="0" step="0.5" inputmode="decimal">
+      </div>
+
+      <div class="field">
+        <label for="canvassingHours">How many hours a week on average did you spend canvassing?</label>
+        <input id="canvassingHours" name="canvassingHours" type="number" min="0" step="0.5" inputmode="decimal">
+      </div>
+
+      <div class="field">
+        <label for="leafletDeliveryHours">How many hours a week did you spend delivering leaflets?</label>
+        <p class="hint">Please do not include time spent canvassing.</p>
+        <input id="leafletDeliveryHours" name="leafletDeliveryHours" type="number" min="0" step="0.5" inputmode="decimal">
+      </div>
+
+      <div class="field">
+        <label for="resultsSurprising">Did you find the results in your area surprising?</label>
+        <select id="resultsSurprising" name="resultsSurprising">
+          <option value="">Select an answer</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+
+      <div class="actions">
+        <button id="submit-button" type="submit">Submit response</button>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+  </main>
+
+  <script>
+    const GOOGLE_SHEET_ENDPOINT = "";
+
+    const form = document.querySelector("#survey-form");
+    const submitButton = document.querySelector("#submit-button");
+    const statusMessage = document.querySelector("#status");
+
+    function setStatus(message, type = "") {
+      statusMessage.textContent = message;
+      statusMessage.className = `status ${type}`.trim();
+    }
+
+    function getPayload() {
+      const formData = new FormData(form);
+      return {
+        submittedAt: new Date().toISOString(),
+        authority: String(formData.get("authority") || "").trim(),
+        ward: String(formData.get("ward") || "").trim(),
+        leafletKinds: String(formData.get("leafletKinds") || "").trim(),
+        phonebankingHours: String(formData.get("phonebankingHours") || "").trim(),
+        canvassingHours: String(formData.get("canvassingHours") || "").trim(),
+        leafletDeliveryHours: String(formData.get("leafletDeliveryHours") || "").trim(),
+        resultsSurprising: String(formData.get("resultsSurprising") || "").trim()
+      };
+    }
+
+    function downloadCsv(payload) {
+      const headers = [
+        "submittedAt",
+        "authority",
+        "ward",
+        "leafletKinds",
+        "phonebankingHours",
+        "canvassingHours",
+        "leafletDeliveryHours",
+        "resultsSurprising"
+      ];
+      const escapeCell = (value) => `"${String(value).replaceAll('"', '""')}"`;
+      const csv = [
+        headers.join(","),
+        headers.map((header) => escapeCell(payload[header])).join(",")
+      ].join("\n");
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "campaigner-survey-response.csv";
+      link.className = "csv-link";
+      link.textContent = "Download this response as CSV";
+      statusMessage.replaceChildren(link);
+      statusMessage.className = "status";
+      link.click();
+      URL.revokeObjectURL(url);
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const payload = getPayload();
+
+      if (!payload.authority) {
+        setStatus("Please enter the authority you were campaigning in.", "error");
+        document.querySelector("#authority").focus();
+        return;
+      }
+
+      submitButton.disabled = true;
+      setStatus("Submitting...");
+
+      if (!GOOGLE_SHEET_ENDPOINT) {
+        downloadCsv(payload);
+        submitButton.disabled = false;
+        form.reset();
+        return;
+      }
+
+      try {
+        await fetch(GOOGLE_SHEET_ENDPOINT, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+          },
+          body: JSON.stringify(payload)
+        });
+        setStatus("Response submitted. Thank you.", "success");
+        form.reset();
+      } catch (error) {
+        setStatus("Something went wrong. Please try again.", "error");
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
